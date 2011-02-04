@@ -4,6 +4,7 @@
     @date: Jan. 29, 2011
     @author: Shao-Chuan Wang (sw2644 at columbia.edu)
 '''
+import cv
 
 class MotionDetector(object):
   ''' A motioni detector class. '''
