@@ -80,37 +80,10 @@ def test_funcs():
   print binc[n.argmax()]
 
 
-def visit(im, i=0, j=0):
-    h, w = im.shape
-    visited = numpy.zeros(im.shape, dtype=numpy.uint8)
-    def near(x, y):
-        if (x,y) in ret:
-            for c in xrange(max(y-1,0), min(y+2,h)):
-                for r in xrange(max(x-1,0), min(x+2,w)):
-                    if not im[c,r]:
-                      yield c,r
-        else:
-            for c in xrange(max(y-1,0), min(y+2,h)):
-                for r in xrange(max(x-1,0), min(x+2,w)):
-                    if (c,r)!=(x,y):
-                      yield c, r
-    def all_points(im):
-        for c in xrange(h):
-            for r in xrange(w):
-                yield c,r
-    q = [(i,j)]
-    ret = set([])
-    while q:
-        u = q.pop(0)
-        for v in near(*u):
-            if not visited[v]:
-                visited[v] = 1
-                q.append(v)
-                if im[v]:
-                    ret.add(v)
-    return ret
-
 def find_contours(im):
+    """ @param im IplImage: an input gray image
+        @return cvseq contours using cv.FindContours
+    """
     storage = cv.CreateMemStorage(0)
     try:
       contours = cv.FindContours(im, 
@@ -126,6 +99,9 @@ def find_contours(im):
     return contours
 
 def find_convex_hull(cvseq):
+    """ @param cvseq cvseq: an input cvseq from cv.FindContours
+        @return cvseq hull: convex hull from ConvexHull2
+    """
     storage = cv.CreateMemStorage(0)
     try:
       hull = cv.ConvexHull2(cvseq, storage, cv.CV_CLOCKWISE, 0)
