@@ -10,8 +10,12 @@ import numpy
   
 def handle_mouse(event, x, y, flags, param):
   pass
-  #print x, y
 
+def isFist(area, depth):
+    return 10.0 < depth < 50 and 35000 < area < 85000
+
+def isPalm(area, depth):
+    return 80.0 < depth < 200.0 and 60000 < area < 120000
 
 class SDC(object):
   ''' Skin SkinDetector Constants. '''
@@ -25,7 +29,27 @@ class ImageProcessSession(object):
     self.skin_detector = skin_detector
     
   def process(self, bgrimg):
-    return self.skin_detector.detectSkin(bgrimg)
+    img = self.skin_detector.detectSkin(bgrimg)
+    contours = im.find_contours(img)
+    max_area, contours = im.max_area(contours)
+    hull = im.find_convex_hull(contours)
+    img = cv.CreateImage((img.width, img.height), 8, 3)
+    if not contours:
+        return img
+    cds = im.find_convex_defects(contours, hull)
+    mean_depth = 0,0
+    if len(cds) != 0:
+      mean_depth = sum([cd[3] for cd in cds])/len(cds)
+    if isPalm(max_area, mean_depth):
+        print 'Palm'
+    elif isFist(max_area, mean_depth):
+        print 'Fist'
+    else:
+        print 'Not Sure'
+    print (max_area, mean_depth)
+    cv.DrawContours(img, contours, im.color.RED, im.color.GREEN, 1,
+            thickness=3)
+    return img
 
   def handle_keyboard(self, key):
     ''' return 0 if normally handle the key else -1.'''
