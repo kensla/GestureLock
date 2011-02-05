@@ -7,7 +7,7 @@
 import cv
 import im
 import numpy
-import skin, gesture, motion
+import skin, gesture
 
 def handle_mouse(event, x, y, flags, param):
   pass
@@ -22,6 +22,48 @@ def handle_keyboard(key):
     return 0
 
 
+class Grammar(object):
+    def __init__(self):
+        self.grammar = []
+        self.n_grammar = 10
+        self.repeat_count = 0
+        self.not_sure_count = 0
+        self.long_threshold = 8
+        self.last_ges = gesture.Gesture('Not Sure')
+        self.start_ges = gesture.Gesture('Palm', 'Long')
+
+    def __repr__(self):
+        return repr(self.grammar)
+
+
+    def instantGes(self, ges):
+        if ges.hasMeaning():
+            self.not_sure_count = 0
+            last = self.last_ges
+            if last.type_ == ges.type_:
+                self.repeat_count += 1
+            else:
+                self.repeat_count = 0
+
+            if self.repeat_count >= self.long_threshold:
+                ges.timing = 'Long'
+
+            if self.grammar:
+                if last.type_ == ges.type_:
+                    self.grammar[-1] = ges
+                else:
+                    self.grammar.append(ges)
+            else:  # empty grammar needs 'Long Palm' to start to record
+                if ges == self.start_ges:
+                    self.grammar.append(ges)
+            self.last_ges = ges
+        else:
+            self.not_sure_count += 1
+            if self.not_sure_count >= self.long_threshold:
+                self.grammar = []
+                self.repeat_count = 0
+
+        print self.grammar
 
 class ImageProcessSession(object):
   """ ImageProcessSession is a high level filter manager object.
@@ -29,7 +71,7 @@ class ImageProcessSession(object):
   def __init__(self, skin_detector):
     self.skin_detector = skin_detector
     self.gesture = gesture.GestureAnalyzer()
-    self.motion = motion.MotionTracker()
+    self.grammar = Grammar()
 
   def process(self, bgrimg):
     img = self.skin_detector.detectSkin(bgrimg)
@@ -38,12 +80,9 @@ class ImageProcessSession(object):
     if not contours:
         return img
 
-    
-    #m = cv.Moments(contours)
-    #print m.m00 #, m.m01, m.m10, m.m11
-    #print cv.MinEnclosingCircle(contours)
-    print self.gesture.recognize(contours)
-    #print (max_area, mean_depth)
+    ges = self.gesture.recognize(contours)
+    print ges
+    self.grammar.instantGes(ges)
     cv.DrawContours(img, contours, im.color.RED, im.color.GREEN, 1,
             thickness=3)
     return img

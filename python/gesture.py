@@ -8,10 +8,45 @@ from constants import GAC
 import motion
 import im
 
+FIST = 0
+PALM = 1
+
+class GestureState(object):
+    def __init__(self):
+        self.history = []
+        self.maxLen = 20
+        self.longThreshold = 5
+
+    def append(self, ges):
+        self.history.append(ges)
+        self.history = self.history[-self.maxLen:]
+
+    def getState(self):
+        if len(self.history) > self.longThreshold:
+            self.history[-self.longThreshold:]
+
+        return 'Short '+self.history[-1]
+
+class Gesture(object):
+    def __init__(self, type_, timing=''):
+        self.timing = timing
+        self.type_ = type_
+
+    def __repr__(self):
+        return self.timing + ' ' + self.type_
+
+    def __eq__(self, obj):
+        return self.type_ == obj.type_ and self.timing == obj.timing
+
+    def hasMeaning(self):
+        return self.type_ != 'Not Sure'
+
 class GestureAnalyzer(object):
     """GestureAnalyzer is responsble for recognizing gesture commands"""
     def __init__(self):
         self.motion = motion.MotionTracker()
+        self.gestures_buffer = []
+        self.buffer_size = 5
 
     def recognize(self, contours):
         max_area, contours = im.max_area(contours)
@@ -25,17 +60,20 @@ class GestureAnalyzer(object):
 
         if not self.isFist(max_area, 
                 mean_depth) and not self.isPalm(max_area, mean_depth):
-            return 'Not Sure'
-        
-        if self.motion.isMoving():
-            ret = 'Moving '
-        else:
-            ret = 'Static '
+            if self.gestures_buffer:
+              self.gestures_buffer.pop(0)
+            return Gesture('Not Sure')
         if self.isFist(max_area, mean_depth):
-            ret = ret + 'Fist'
+            self.gestures_buffer.append(FIST)
         elif self.isPalm(max_area, mean_depth):
-            ret = ret + 'Palm'
-        return ret
+            self.gestures_buffer.append(PALM)
+        self.gestures_buffer = self.gestures_buffer[-self.buffer_size:]
+        avg = float(sum(self.gestures_buffer))/self.buffer_size
+        if avg > 0.5:
+            ges = 'Palm'
+        else:
+            ges = 'Fist'
+        return Gesture(ges, 'Short')
 
     def isFist(self, area, depth):
         return GAC.FIST.DEPTH_L < depth < GAC.FIST.DEPTH_U and \
