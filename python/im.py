@@ -43,6 +43,15 @@ def bgr2rgb(cvimg):
   cv.CvtColor(cvimg, rgbimg, cv.CV_BGR2RGB)
   return rgbimg
 
+def rgb2bgr(cvimg):
+  size = (cvimg.width, cvimg.height)
+  depth = cvimg.depth
+  channels = cvimg.nChannels
+  bgrimg = cv.CreateImage(size, depth, channels)
+  cv.CvtColor(cvimg, bgrimg, cv.CV_RGB2BGR)
+  return bgrimg
+
+
 def split3(cvimg):
   size = (cvimg.width, cvimg.height)
   c1 = cv.CreateImage(size, cv.IPL_DEPTH_8U, 1)

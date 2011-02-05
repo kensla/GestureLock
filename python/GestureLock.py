@@ -7,7 +7,7 @@
 import cv
 import im
 import numpy
-import skin, gesture
+import skin, gesture, motion
 
 def handle_mouse(event, x, y, flags, param):
   pass
@@ -29,22 +29,21 @@ class ImageProcessSession(object):
   def __init__(self, skin_detector):
     self.skin_detector = skin_detector
     self.gesture = gesture.GestureAnalyzer()
+    self.motion = motion.MotionTracker()
 
   def process(self, bgrimg):
     img = self.skin_detector.detectSkin(bgrimg)
     contours = im.find_contours(img)
-    max_area, contours = im.max_area(contours)
-    hull = im.find_convex_hull(contours)
     img = cv.CreateImage((img.width, img.height), 8, 3)
     if not contours:
         return img
-    cds = im.find_convex_defects(contours, hull)
-    mean_depth = 0,0
-    if len(cds) != 0:
-      mean_depth = sum([cd[3] for cd in cds])/len(cds)
 
-    print self.gesture.recognize(max_area, mean_depth)
-    print (max_area, mean_depth)
+    
+    #m = cv.Moments(contours)
+    #print m.m00 #, m.m01, m.m10, m.m11
+    #print cv.MinEnclosingCircle(contours)
+    print self.gesture.recognize(contours)
+    #print (max_area, mean_depth)
     cv.DrawContours(img, contours, im.color.RED, im.color.GREEN, 1,
             thickness=3)
     return img
