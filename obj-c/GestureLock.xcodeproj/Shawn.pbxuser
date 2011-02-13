@@ -7,14 +7,64 @@
 			sepNavVisRange = "{0, 202}";
 		};
 	};
-	2916886812EF719E008C1543 /* PBXTextBookmark */ = {
+	2916888412EF79E5008C1543 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 120;
+		vrLoc = 0;
+	};
+	2916888512EF79E5008C1543 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* GestureLock_Prefix.pch */;
+		name = "GestureLock_Prefix.pch: 2";
+		rLen = 10;
+		rLoc = 49;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 0;
+	};
+	2916888A12EF79E5008C1543 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* GestureLock_Prefix.pch */;
+		name = "GestureLock_Prefix.pch: 2";
+		rLen = 10;
+		rLoc = 49;
+		rType = 0;
+		vrLen = 1402;
+		vrLoc = 0;
+	};
+	291688D412EF8465008C1543 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C5E698F10BA8735700382716 /* GestureLockController.h */;
+		name = "GestureLockController.h: 8";
+		rLen = 19;
+		rLoc = 219;
+		rType = 0;
+		vrLen = 439;
+		vrLoc = 0;
+	};
+	291688F312F0830F008C1543 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
-		name = "GestureLockController.m: 106";
+		name = "GestureLockController.m: 143";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 4055;
 		rType = 0;
-		vrLen = 585;
+		vrLen = 907;
+		vrLoc = 3917;
+	};
+	291688F412F0830F008C1543 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
+		name = "GestureLockController.m: 10";
+		rLen = 0;
+		rLoc = 188;
+		rType = 0;
+		vrLen = 769;
 		vrLoc = 0;
 	};
 	2948D9FE12EF68EF00B9794E /* PBXTextBookmark */ = {
@@ -26,23 +76,6 @@
 		rType = 0;
 		vrLen = 120;
 		vrLoc = 0;
-	};
-	2948DA9C12EF6C7300B9794E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2948DA9D12EF6C7300B9794E /* GestureLock Help.html */;
-		name = "GestureLock Help.html: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 256;
-		vrLoc = 0;
-	};
-	2948DA9D12EF6C7300B9794E /* GestureLock Help.html */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.html;
-		name = "GestureLock Help.html";
-		path = "/Users/Shawn/Documents/manuscripts/Columbia University/W4735 Visual/MYRecorder copy/English.lproj/GestureLock Help/GestureLock Help.html";
-		sourceTree = "<absolute>";
 	};
 	2948DAA112EF6C7300B9794E /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -57,23 +90,6 @@
 		rType = 0;
 		vrLen = 202;
 		vrLoc = 0;
-	};
-	2948DAA512EF6C7300B9794E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 2948DAA612EF6C7300B9794E /* GestureLock Help.html */;
-		name = "GestureLock Help.html: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 256;
-		vrLoc = 0;
-	};
-	2948DAA612EF6C7300B9794E /* GestureLock Help.html */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = text.html;
-		name = "GestureLock Help.html";
-		path = "/Users/Shawn/Documents/manuscripts/Columbia University/W4735 Visual/MYRecorder copy/English.lproj/GestureLock Help/GestureLock Help.html";
-		sourceTree = "<absolute>";
 	};
 	2948DAB412EF6E0D00B9794E /* PBXBookmark */ = {
 		isa = PBXBookmark;
@@ -99,16 +115,6 @@
 		name = "/Users/Shawn/Documents/manuscripts/Columbia University/W4735 Visual/MYRecorder copy/Info.plist";
 		rLen = 0;
 		rLoc = 2147483647;
-	};
-	2948DAB712EF6E0D00B9794E /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
-		name = "GestureLockController.m: 40";
-		rLen = 24;
-		rLoc = 897;
-		rType = 0;
-		vrLen = 670;
-		vrLoc = 3408;
 	};
 	2948DABE12EF6E0D00B9794E /* PlistBookmark */ = {
 		isa = PlistBookmark;
@@ -142,67 +148,29 @@
 		executableUserSymbolLevel = 0;
 		libgmallocEnabled = 0;
 		name = GestureLock;
+		savedGlobals = {
+		};
 		sourceDirectories = (
 		);
 	};
-	296D588712EF702900977CA9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 120;
-		vrLoc = 0;
-	};
-	296D588812EF702900977CA9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C5E698F10BA8735700382716 /* GestureLockController.h */;
-		name = "GestureLockController.h: 4";
-		rLen = 0;
-		rLoc = 68;
-		rType = 0;
-		vrLen = 458;
-		vrLoc = 0;
-	};
-	296D588912EF702900977CA9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
-		name = "main.m: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 120;
-		vrLoc = 0;
-	};
-	296D588A12EF702900977CA9 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C5E698F10BA8735700382716 /* GestureLockController.h */;
-		name = "GestureLockController.h: 4";
-		rLen = 0;
-		rLoc = 68;
-		rType = 0;
-		vrLen = 458;
-		vrLoc = 0;
-	};
-	296D588B12EF702900977CA9 /* PBXTextBookmark */ = {
+	29B259E712F1135800E35FB1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
-		name = "GestureLockController.m: 106";
+		name = "GestureLockController.m: 140";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 3976;
 		rType = 0;
-		vrLen = 669;
+		vrLen = 463;
 		vrLoc = 0;
 	};
-	29A8217F12EF714A001AF365 /* PBXTextBookmark */ = {
+	29B259E812F1135800E35FB1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
-		name = "GestureLockController.m: 106";
+		name = "GestureLockController.m: 10";
 		rLen = 0;
-		rLoc = 3699;
+		rLoc = 188;
 		rType = 0;
-		vrLen = 585;
+		vrLen = 708;
 		vrLoc = 0;
 	};
 	29B283FA12C6FF9E006A0B48 /* Source Control */ = {
@@ -240,6 +208,9 @@
 		activeBuildConfigurationName = Debug;
 		activeExecutable = 296D587D12EF6FD200977CA9 /* GestureLock */;
 		activeTarget = 8D1107260486CEB800E47090 /* GestureLock */;
+		addToTargets = (
+			8D1107260486CEB800E47090 /* GestureLock */,
+		);
 		codeSenseManager = 29B283FB12C6FF9E006A0B48 /* Code sense */;
 		executables = (
 			296D587D12EF6FD200977CA9 /* GestureLock */,
@@ -260,7 +231,7 @@
 				);
 			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
-				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingDirectionKey = 1;
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
@@ -281,30 +252,27 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 317682068;
-			PBXWorkspaceStateSaveDate = 317682068;
+			PBXPerProjectTemplateStateSaveDate = 317788955;
+			PBXWorkspaceStateSaveDate = 317788955;
 		};
 		perUserProjectItems = {
-			2916886812EF719E008C1543 /* PBXTextBookmark */ = 2916886812EF719E008C1543 /* PBXTextBookmark */;
-			2948D9FE12EF68EF00B9794E = 2948D9FE12EF68EF00B9794E /* PBXTextBookmark */;
-			2948DA9C12EF6C7300B9794E = 2948DA9C12EF6C7300B9794E /* PBXTextBookmark */;
-			2948DAA112EF6C7300B9794E = 2948DAA112EF6C7300B9794E /* PBXBookmark */;
-			2948DAA312EF6C7300B9794E = 2948DAA312EF6C7300B9794E /* PBXTextBookmark */;
-			2948DAA512EF6C7300B9794E = 2948DAA512EF6C7300B9794E /* PBXTextBookmark */;
-			2948DAB412EF6E0D00B9794E = 2948DAB412EF6E0D00B9794E /* PBXBookmark */;
-			2948DAB512EF6E0D00B9794E = 2948DAB512EF6E0D00B9794E /* PBXTextBookmark */;
-			2948DAB612EF6E0D00B9794E = 2948DAB612EF6E0D00B9794E /* PlistBookmark */;
-			2948DAB712EF6E0D00B9794E = 2948DAB712EF6E0D00B9794E /* PBXTextBookmark */;
-			2948DABE12EF6E0D00B9794E = 2948DABE12EF6E0D00B9794E /* PlistBookmark */;
-			296D588712EF702900977CA9 = 296D588712EF702900977CA9 /* PBXTextBookmark */;
-			296D588812EF702900977CA9 = 296D588812EF702900977CA9 /* PBXTextBookmark */;
-			296D588912EF702900977CA9 = 296D588912EF702900977CA9 /* PBXTextBookmark */;
-			296D588A12EF702900977CA9 = 296D588A12EF702900977CA9 /* PBXTextBookmark */;
-			296D588B12EF702900977CA9 = 296D588B12EF702900977CA9 /* PBXTextBookmark */;
-			29A8217F12EF714A001AF365 = 29A8217F12EF714A001AF365 /* PBXTextBookmark */;
-			29B2840512C82401006A0B48 = 29B2840512C82401006A0B48 /* PBXTextBookmark */;
-			29B2840612C82401006A0B48 = 29B2840612C82401006A0B48 /* PBXTextBookmark */;
-			29EDE50A12EF703D00343301 = 29EDE50A12EF703D00343301 /* PBXTextBookmark */;
+			2916888412EF79E5008C1543 /* PBXTextBookmark */ = 2916888412EF79E5008C1543 /* PBXTextBookmark */;
+			2916888512EF79E5008C1543 /* PBXTextBookmark */ = 2916888512EF79E5008C1543 /* PBXTextBookmark */;
+			2916888A12EF79E5008C1543 /* PBXTextBookmark */ = 2916888A12EF79E5008C1543 /* PBXTextBookmark */;
+			291688D412EF8465008C1543 /* PBXTextBookmark */ = 291688D412EF8465008C1543 /* PBXTextBookmark */;
+			291688F312F0830F008C1543 /* PBXTextBookmark */ = 291688F312F0830F008C1543 /* PBXTextBookmark */;
+			291688F412F0830F008C1543 /* PBXTextBookmark */ = 291688F412F0830F008C1543 /* PBXTextBookmark */;
+			2948D9FE12EF68EF00B9794E /* PBXTextBookmark */ = 2948D9FE12EF68EF00B9794E /* PBXTextBookmark */;
+			2948DAA112EF6C7300B9794E /* PBXBookmark */ = 2948DAA112EF6C7300B9794E /* PBXBookmark */;
+			2948DAA312EF6C7300B9794E /* PBXTextBookmark */ = 2948DAA312EF6C7300B9794E /* PBXTextBookmark */;
+			2948DAB412EF6E0D00B9794E /* PBXBookmark */ = 2948DAB412EF6E0D00B9794E /* PBXBookmark */;
+			2948DAB512EF6E0D00B9794E /* PBXTextBookmark */ = 2948DAB512EF6E0D00B9794E /* PBXTextBookmark */;
+			2948DAB612EF6E0D00B9794E /* PlistBookmark */ = 2948DAB612EF6E0D00B9794E /* PlistBookmark */;
+			2948DABE12EF6E0D00B9794E /* PlistBookmark */ = 2948DABE12EF6E0D00B9794E /* PlistBookmark */;
+			29B259E712F1135800E35FB1 /* PBXTextBookmark */ = 29B259E712F1135800E35FB1 /* PBXTextBookmark */;
+			29B259E812F1135800E35FB1 /* PBXTextBookmark */ = 29B259E812F1135800E35FB1 /* PBXTextBookmark */;
+			29B2840512C82401006A0B48 /* PBXTextBookmark */ = 29B2840512C82401006A0B48 /* PBXTextBookmark */;
+			29B2840612C82401006A0B48 /* PBXTextBookmark */ = 29B2840612C82401006A0B48 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 29B283FA12C6FF9E006A0B48 /* Source Control */;
 		userBuildSettings = {
@@ -312,20 +280,10 @@
 	};
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 536}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 559}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 120}";
 		};
-	};
-	29EDE50A12EF703D00343301 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = C5E698F20BA8735700382716 /* GestureLockController.m */;
-		name = "GestureLockController.m: 106";
-		rLen = 0;
-		rLoc = 3699;
-		rType = 0;
-		vrLen = 585;
-		vrLoc = 0;
 	};
 	32CA4F630368D1EE00C91783 /* GestureLock_Prefix.pch */ = {
 		uiCtxt = {
@@ -342,17 +300,18 @@
 	};
 	C5E698F10BA8735700382716 /* GestureLockController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 536}}";
-			sepNavSelRange = "{68, 0}";
-			sepNavVisRange = "{0, 458}";
+			sepNavIntBoundsRect = "{{0, 0}, {1139, 559}}";
+			sepNavSelRange = "{219, 19}";
+			sepNavVisRange = "{0, 439}";
+			sepNavWindowFrame = "{{15, 234}, {1229, 819}}";
 		};
 	};
 	C5E698F20BA8735700382716 /* GestureLockController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1139, 3850}}";
-			sepNavSelRange = "{3699, 0}";
-			sepNavVisRange = "{0, 585}";
-			sepNavWindowFrame = "{{63, 372}, {1001, 668}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1170, 3718}}";
+			sepNavSelRange = "{188, 0}";
+			sepNavVisRange = "{0, 708}";
+			sepNavWindowFrame = "{{40, 61}, {1229, 717}}";
 		};
 	};
 }

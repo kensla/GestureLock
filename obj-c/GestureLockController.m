@@ -65,40 +65,29 @@
             }
         }
         
-// Create the movie file output and add it to the session
-        
-        mCaptureMovieFileOutput = [[QTCaptureMovieFileOutput alloc] init];
-        success = [mCaptureSession addOutput:mCaptureMovieFileOutput error:&error];
-        if (!success) {
-            // Handle error
-        }
-        
-        [mCaptureMovieFileOutput setDelegate:self];
+// Create a video preview output and add it to the session
+
+      mCaptureVideoOutput = [[QTCaptureVideoPreviewOutput alloc] init];
+      success = [mCaptureSession addOutput:mCaptureVideoOutput error:&error];
+      if (!success) {
+        NSLog(@"Add Decompressed Video Output failed.");
+      }
+      [mCaptureVideoOutput setDelegate: self];
 
 
-// Set the compression for the audio/video that is recorded to the hard disk.
-
-	NSEnumerator *connectionEnumerator = [[mCaptureMovieFileOutput connections] objectEnumerator];
+      
+	NSEnumerator *connectionEnumerator = [[mCaptureVideoOutput connections] objectEnumerator];
 	QTCaptureConnection *connection;
 	
-	// iterate over each output connection for the capture session and specify the desired compression
+	// iterate over each output connection for the capture session
 	while ((connection = [connectionEnumerator nextObject])) {
 		NSString *mediaType = [connection mediaType];
-		QTCompressionOptions *compressionOptions = nil;
-		// specify the video compression options
-		// (note: a list of other valid compression types can be found in the QTCompressionOptions.h interface file)
+
+    /* if the type of connected media is video */
 		if ([mediaType isEqualToString:QTMediaTypeVideo]) {
-			// use H.264
-			compressionOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptions240SizeH264Video"];
-		// specify the audio compression options
-		} else if ([mediaType isEqualToString:QTMediaTypeSound]) {
-			// use AAC Audio
-			compressionOptions = [QTCompressionOptions compressionOptionsWithIdentifier:@"QTCompressionOptionsHighQualityAACAudio"];
-		}
-		
-		// set the compression options for the movie file output
-		[mCaptureMovieFileOutput setCompressionOptions:compressionOptions forConnection:connection];
-	} 
+    }
+    
+  } 
 
 // Associate the capture view in the UI with the session
         
@@ -131,9 +120,8 @@
 {
 	[mCaptureSession release];
 	[mCaptureVideoDeviceInput release];
-    [mCaptureAudioDeviceInput release];
-	[mCaptureMovieFileOutput release];
-	
+  [mCaptureAudioDeviceInput release];
+	[mCaptureVideoOutput release];
 	[super dealloc];
 }
 
@@ -143,20 +131,32 @@
 
 - (IBAction)startRecording:(id)sender
 {
-	[mCaptureMovieFileOutput recordToOutputFileURL:[NSURL fileURLWithPath:@"/Users/Shared/My Recorded Movie.mov"]];
+	//[mCaptureMovieFileOutput recordToOutputFileURL:[NSURL fileURLWithPath:@"/Users/Shared/My Recorded Movie.mov"]];
 }
 
 - (IBAction)stopRecording:(id)sender
 {
-	[mCaptureMovieFileOutput recordToOutputFileURL:nil];
+	//[mCaptureMovieFileOutput recordToOutputFileURL:nil];
 }
 
-// Do something with your QuickTime movie at the path you've specified at /Users/Shared/My Recorded Movie.mov"
-
-- (void)captureOutput:(QTCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL forConnections:(NSArray *)connections dueToError:(NSError *)error
+- (void)captureOutput:(QTCaptureOutput *)captureOutput 
+  didOutputVideoFrame:(CVImageBufferRef)videoFrame 
+     withSampleBuffer:(QTSampleBuffer *)sampleBuffer 
+       fromConnection:(QTCaptureConnection *)connection
 {
-	[[NSWorkspace sharedWorkspace] openURL:outputFileURL];
+  NSLog(@"capture called back");
+  CIImage *img = [CIImage imageWithCVImageBuffer: videoFrame];
+  NSBitmapImageRep *bmp = [[NSBitmapImageRep alloc] initWithCIImage: img];
+  
+  NSUInteger rgb[] = {0,0,0,0};
+  [bmp getPixel:rgb atX:0 y:0];
+  NSLog(@"isplanar? %d", [bmp isPlanar]);
+  NSLog(@"sample per pixel: %d", [bmp samplesPerPixel]);
+  NSLog(@"bytesPerRow: %d", [bmp bytesPerRow]);
+  NSLog(@"width: %d", [bmp bytesPerRow]/[bmp samplesPerPixel]);
+  NSLog(@"height: %d", [bmp bytesPerPlane]/[bmp bytesPerRow]);
+  //NSLog(@"pixel at 0,0: (%d, %d, %d, %d)", rgb[0], rgb[1], rgb[2], rgb[3]);   
+        
+  [bmp release];
 }
-
-
 @end

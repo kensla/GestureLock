@@ -2,13 +2,12 @@
 #import <QTKit/QTkit.h>
 
 @interface GestureLockController : NSObject {
+  IBOutlet QTCaptureView *mCaptureView;
     
-    IBOutlet QTCaptureView *mCaptureView;
-    
-    QTCaptureSession            *mCaptureSession;
-    QTCaptureMovieFileOutput    *mCaptureMovieFileOutput;
-    QTCaptureDeviceInput        *mCaptureVideoDeviceInput;
-    QTCaptureDeviceInput        *mCaptureAudioDeviceInput;
+  QTCaptureSession            *mCaptureSession;
+  QTCaptureVideoPreviewOutput *mCaptureVideoOutput;
+  QTCaptureDeviceInput        *mCaptureVideoDeviceInput;
+  QTCaptureDeviceInput        *mCaptureAudioDeviceInput;
 }
 - (IBAction)startRecording:(id)sender;
 - (IBAction)stopRecording:(id)sender;

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2916887F12EF78B9008C1543 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2916887E12EF78B9008C1543 /* QuartzCore.framework */; };
 		2B531E1B0BBB3FBD00F42B98 /* Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2B531E1A0BBB3FBD00F42B98 /* Icon.icns */; };
 		2BAB8A530BBB551900143BEF /* GestureLock Help in Resources */ = {isa = PBXBuildFile; fileRef = 2BAB8A510BBB551900143BEF /* GestureLock Help */; };
 		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2916887E12EF78B9008C1543 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		296D587B12EF6FD200977CA9 /* GestureLock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GestureLock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
@@ -41,6 +43,7 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				C5E698EE0BA872BA00382716 /* QTKit.framework in Frameworks */,
+				2916887F12EF78B9008C1543 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				C5E698ED0BA872BA00382716 /* QTKit.framework */,
+				2916887E12EF78B9008C1543 /* QuartzCore.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";

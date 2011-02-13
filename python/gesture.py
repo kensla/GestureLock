@@ -8,25 +8,6 @@ from constants import GAC
 import motion
 import im
 
-FIST = 0
-PALM = 1
-
-class GestureState(object):
-    def __init__(self):
-        self.history = []
-        self.maxLen = 20
-        self.longThreshold = 5
-
-    def append(self, ges):
-        self.history.append(ges)
-        self.history = self.history[-self.maxLen:]
-
-    def getState(self):
-        if len(self.history) > self.longThreshold:
-            self.history[-self.longThreshold:]
-
-        return 'Short '+self.history[-1]
-
 class Gesture(object):
     def __init__(self, type_, timing=''):
         self.timing = timing
@@ -44,25 +25,31 @@ class Gesture(object):
 class GestureAnalyzer(object):
     """GestureAnalyzer is responsble for recognizing gesture commands"""
     def __init__(self):
-        self.motion = motion.MotionTracker()
+        self.motion = motion.MotionTracker() # currently unused.
         self.gestures_buffer = []
         self.buffer_size = 5
 
     def recognize(self, contours):
+        # using maximal area and convexity defect depths to 
+        # recognize between palm and fist.
         max_area, contours = im.max_area(contours)
         hull = im.find_convex_hull(contours)
         mean_depth = 0
-        self.motion.push(contours)
         if hull:
           cds = im.find_convex_defects(contours, hull)
           if len(cds) != 0:
               mean_depth = sum([cd[3] for cd in cds])/len(cds)
 
-        if not self.isFist(max_area, 
+        if not self.isFist(max_area,
                 mean_depth) and not self.isPalm(max_area, mean_depth):
             if self.gestures_buffer:
               self.gestures_buffer.pop(0)
             return Gesture('Not Sure')
+
+        # The majority of votes in self.gestures_buffer will
+        # determine which gesture should be in this frame
+        FIST = 0
+        PALM = 1
         if self.isFist(max_area, mean_depth):
             self.gestures_buffer.append(FIST)
         elif self.isPalm(max_area, mean_depth):
