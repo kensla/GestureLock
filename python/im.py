@@ -123,6 +123,25 @@ def find_convex_defects(contour, hull):
     return cv.ConvexityDefects(contour, hull, storage)
 
 
+def find_max_rectangle(contours):
+    lefts, tops = [], []
+    max_right, max_bottom = 0, 0
+    try:
+      while True:
+          left, top, w, h = cv.BoundingRect(contours)
+          right = left + w
+          bottom = top + h
+          lefts.append(left)
+          tops.append(top)
+          if right > max_right:
+              max_right = right
+          if bottom > max_bottom:
+              max_bottom = bottom
+          contours = contours.h_next()
+    except TypeError, e:
+      return min(lefts), min(tops), max_right, max_bottom
+    return min(lefts), min(tops), max_right, max_bottom
+
 def max_area(contours):
     ''' returns the contour with maximal area. 
         @return: (max_area, max_contour)

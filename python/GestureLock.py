@@ -189,12 +189,16 @@ def mainLoop():
     img_writer.write(bgrimg)
     cv.Flip(bgrimg, None, 1)
     contours = session.process(bgrimg)
+
+    cv.SaveImage('orig.png', bgrimg)
     img = cv.CreateImage((bgrimg.width, bgrimg.height), 8, 3)
     if contours:
+        ges = ga.recognize(contours)
+        x, y, r, b = im.find_max_rectangle(contours)
+        cv.Rectangle(img, (x,y), (r, b), im.color.RED)
         cv.DrawContours(img, contours, im.color.RED, im.color.GREEN, 1,
             thickness=3)
-
-        ges = ga.recognize(contours)
+        cv.SaveImage('contour.png', img)
         print ges
         print grammar.instantGes(ges)
     if grammar == answer_grammer:

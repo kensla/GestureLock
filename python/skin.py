@@ -46,10 +46,20 @@ class SkinDetector(object):
 
   def detectSkin(self, bgrimg):
     img_temp = cv.CreateImage(im.size(bgrimg), bgrimg.depth, bgrimg.nChannels)
+    #cv.SaveImage("original.png", bgrimg)
     cv.Smooth(bgrimg, img_temp, cv.CV_MEDIAN, 15)#, 0, 20, 20)
+    #cv.SaveImage("smooth.png", img_temp)
     cv.ShowImage("Capture from camera", img_temp)
-    hsvimg = im.bgr2hsv(img_temp)
-    h,s,v = im.split3(img_temp)
+
+    #skin_o = self._detectSkin(bgrimg)
+    #cv.SaveImage("skin_o.png", skin_o)
+    skin = self._detectSkin(img_temp)
+    #cv.SaveImage("skin_s.png", skin)
+    return skin
+
+  def _detectSkin(self, bgrimg):
+    hsvimg = im.bgr2hsv(bgrimg)
+    h,s,v = im.split3(bgrimg)
     skin_mask = cv.CreateImage(im.size(hsvimg), cv.IPL_DEPTH_8U, 1)
     h_mask = cv.CreateImage(im.size(hsvimg), cv.IPL_DEPTH_8U, 1)
     v_mask = cv.CreateImage(im.size(hsvimg), cv.IPL_DEPTH_8U, 1)
