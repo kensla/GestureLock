@@ -177,7 +177,9 @@ def mainLoop():
       print 'usage: python GestureLock.py -g grammar_file.gmr'
       exit(0)
   answer_grammer = read_grammar(gfn)
-  img_writer = ImageWriter(output_folder=get_output_folder())
+  im_orig_writer = ImageWriter(output_folder=get_output_folder())
+  im_contour_writer = ImageWriter(output_folder='out2')
+  prev = []
   while True:
     k = cv.WaitKey(msdelay)
     k = chr(k) if k > 0 else 0
@@ -186,22 +188,35 @@ def mainLoop():
     bgrimg = cv.QueryFrame(cam)
     if not bgrimg:
         break
-    img_writer.write(bgrimg)
+    im_orig_writer.write(bgrimg)
     cv.Flip(bgrimg, None, 1)
     contours = session.process(bgrimg)
 
-    cv.SaveImage('orig.png', bgrimg)
     img = cv.CreateImage((bgrimg.width, bgrimg.height), 8, 3)
     if contours:
-        ges = ga.recognize(contours)
+        ges, area, depth = ga.recognize(contours)
         x, y, r, b = im.find_max_rectangle(contours)
         cv.Rectangle(img, (x,y), (r, b), im.color.RED)
         cv.DrawContours(img, contours, im.color.RED, im.color.GREEN, 1,
             thickness=3)
-        cv.SaveImage('contour.png', img)
         print ges
-        print grammar.instantGes(ges)
+        currentInput = grammar.instantGes(ges)
+        print currentInput
+        
+        if len(prev)>=2:
+          for i,g in enumerate(currentInput):
+              im.puttext(prev[0], str(g), 30, 70+40*i)
+          im_contour_writer.write(prev[0])
+          prev.append( img )
+          prev.pop(0)
+        else:
+          prev.append( img )
     if grammar == answer_grammer:
+        for i,g in enumerate(currentInput):
+          im.puttext(prev[0], str(g), 30, 70+40*i)
+        im_contour_writer.write(prev[0])
+        im.puttext(prev[0], 'AUTHENTICATED!', 30, 70+40*len(currentInput))
+        im_contour_writer.write(prev[0])
         print 'AUTHENTICATED!!!!'
         break
     cv.ShowImage(proc_win_name, img)

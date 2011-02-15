@@ -32,7 +32,9 @@ class GestureAnalyzer(object):
     def recognize(self, contours):
         # using maximal area and convexity defect depths to 
         # recognize between palm and fist.
+        x, y, r, b = im.find_max_rectangle(contours)
         max_area, contours = im.max_area(contours)
+        print 'area: ', float(max_area)/((r-x)*(b-y))
         hull = im.find_convex_hull(contours)
         mean_depth = 0
         if hull:
@@ -44,7 +46,7 @@ class GestureAnalyzer(object):
                 mean_depth) and not self.isPalm(max_area, mean_depth):
             if self.gestures_buffer:
               self.gestures_buffer.pop(0)
-            return Gesture('Not Sure')
+            return Gesture('Not Sure'), max_area, mean_depth
 
         # The majority of votes in self.gestures_buffer will
         # determine which gesture should be in this frame
@@ -60,7 +62,7 @@ class GestureAnalyzer(object):
             ges = 'Palm'
         else:
             ges = 'Fist'
-        return Gesture(ges, 'Short')
+        return Gesture(ges, 'Short'), max_area, mean_depth
 
     def isFist(self, area, depth):
         return GAC.FIST.DEPTH_L < depth < GAC.FIST.DEPTH_U and \
