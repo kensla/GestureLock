@@ -6,7 +6,6 @@
 '''
 import numpy
 import cv
-import matplotlib.pyplot as pyplot
 
 class Color(object):
     pass
@@ -79,7 +78,7 @@ def size(cvimg):
   return (cvimg.width, cvimg.height)
 
 def test_funcs():
-
+  import matplotlib.pyplot as pyplot
   im = cv.LoadImage('me.jpg')
   im = bgr2hsv(im)
   h,s,v = split3(im)
